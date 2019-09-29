@@ -41,3 +41,10 @@ class StatusUpdateAPIView(generics.UpdateAPIView):
   authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
+
+
+class StatusDeleteAPIView(generics.DestroyAPIView):
+  permission_classes      = []
+  authentication_classes  = []
+  queryset                = Status.objects.all()
+  serializer_class        = StatusSerialzer
