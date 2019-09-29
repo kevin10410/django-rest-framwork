@@ -27,3 +27,10 @@ class StatusDetailAPIView(generics.RetrieveAPIView):
   #   data = Status.objects.get(pk=id)
   #   serializers = StatusSerialzer(data)
   #   return Response(serializers.data)
+
+
+class StatusCreateAPIView(generics.CreateAPIView):
+  permission_classes      = []
+  authentication_classes  = []
+  queryset                = Status.objects.all()
+  serializer_class        = StatusSerialzer
