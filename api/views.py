@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 
 from .models import Status
 from .serializers import StatusSerialzer
@@ -34,6 +35,7 @@ class StatusCreateAPIView(generics.CreateAPIView):
   authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
+
 
 
 class StatusUpdateAPIView(generics.UpdateAPIView):
