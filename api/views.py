@@ -7,11 +7,14 @@ from .models import Status
 from .serializers import StatusSerialzer
 # Create your views here.
 
-class StatusListAPIView(generics.ListAPIView):
+class StatusListAPIView(CreateModelMixin, generics.ListAPIView):
   permission_classes      = []
   authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
+
+  def post(self, request, *args, **kwargs):
+    return self.create(request, *args, **kwargs)
 
   # def get(self, request, format=None):
   #   allData = Status.objects.all()
