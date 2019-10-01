@@ -21,7 +21,9 @@ class StatusListAPIView(CreateModelMixin, generics.ListAPIView):
   #   serializers = StatusSerialzer(allData, many=True)
   #   return Response(serializers.data)
 
-class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveAPIView):
+
+# class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
+class StatusDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
   permission_classes      = []
   authentication_classes  = []
   queryset                = Status.objects.all()
