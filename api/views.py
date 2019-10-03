@@ -29,6 +29,13 @@ class StatusListAPIView(
     request_id = request.GET.get('id', None)
     return None if request_id == None else get_object_or_404(queryset, id=request_id)
 
+  def get(self, request, *args, **kwargs):
+    id = request.GET.get('id', None)
+    if id is None:
+      return super().get(request, *args, **kwargs)
+    else:
+      return self.retrieve(request, *args, **kwargs)
+
 
 # class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
 class StatusDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
