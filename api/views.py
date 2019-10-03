@@ -1,13 +1,17 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
-from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
+from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin, RetrieveModelMixin
+from django.shortcuts import get_object_or_404
 
 from .models import Status
 from .serializers import StatusSerialzer
 # Create your views here.
 
-class StatusListAPIView(CreateModelMixin, generics.ListAPIView):
+class StatusListAPIView(
+  generics.ListAPIView,
+  CreateModelMixin,
+  RetrieveModelMixin):
   permission_classes      = []
   authentication_classes  = []
   queryset                = Status.objects.all()
@@ -16,10 +20,14 @@ class StatusListAPIView(CreateModelMixin, generics.ListAPIView):
   def post(self, request, *args, **kwargs):
     return self.create(request, *args, **kwargs)
 
-  # def get(self, request, format=None):
-  #   allData = Status.objects.all()
-  #   serializers = StatusSerialzer(allData, many=True)
-  #   return Response(serializers.data)
+  def get_queryset(self):
+    return Status.objects.all()
+
+  def get_object(self):
+    request = self.request
+    queryset = self.get_queryset()
+    request_id = request.GET.get('id', None)
+    return None if request_id == None else get_object_or_404(queryset, id=request_id)
 
 
 # class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
