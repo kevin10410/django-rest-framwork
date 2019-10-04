@@ -11,7 +11,8 @@ from .serializers import StatusSerialzer
 class StatusListAPIView(
   generics.ListAPIView,
   CreateModelMixin,
-  RetrieveModelMixin):
+  RetrieveModelMixin,
+  UpdateModelMixin):
   permission_classes      = []
   authentication_classes  = []
   queryset                = Status.objects.all()
@@ -35,6 +36,9 @@ class StatusListAPIView(
       return super().get(request, *args, **kwargs)
     else:
       return self.retrieve(request, *args, **kwargs)
+
+  def put(self, requese, *args, **kwargs):
+    return self.update(requese, *args, **kwargs)
 
 
 # class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
