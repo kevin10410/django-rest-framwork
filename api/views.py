@@ -12,7 +12,8 @@ class StatusListAPIView(
   generics.ListAPIView,
   CreateModelMixin,
   RetrieveModelMixin,
-  UpdateModelMixin):
+  UpdateModelMixin,
+  DestroyModelMixin):
   permission_classes      = []
   authentication_classes  = []
   queryset                = Status.objects.all()
@@ -39,6 +40,9 @@ class StatusListAPIView(
 
   def put(self, requese, *args, **kwargs):
     return self.update(requese, *args, **kwargs)
+
+  def delete(self, request, *args, **kwargs):
+    return self.destroy(request, *args, **kwargs)
 
 
 # class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
