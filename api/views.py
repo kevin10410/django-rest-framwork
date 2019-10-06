@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin, RetrieveModelMixin
@@ -15,7 +16,7 @@ class StatusListAPIView(
   UpdateModelMixin,
   DestroyModelMixin):
   permission_classes      = []
-  authentication_classes  = []
+  authentication_classes  = [SessionAuthentication]
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
 
