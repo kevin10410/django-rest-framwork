@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin, RetrieveModelMixin
 from django.shortcuts import get_object_or_404
 
@@ -15,7 +15,7 @@ class StatusListAPIView(
   RetrieveModelMixin,
   UpdateModelMixin,
   DestroyModelMixin):
-  permission_classes      = []
+  permission_classes      = [permissions.IsAuthenticatedOrReadOnly]
   authentication_classes  = [SessionAuthentication]
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
