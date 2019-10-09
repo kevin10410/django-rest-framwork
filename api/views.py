@@ -15,8 +15,6 @@ class StatusListAPIView(
   RetrieveModelMixin,
   UpdateModelMixin,
   DestroyModelMixin):
-  permission_classes      = [permissions.IsAuthenticatedOrReadOnly]
-  authentication_classes  = [SessionAuthentication]
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
 
@@ -48,8 +46,6 @@ class StatusListAPIView(
 
 # class StatusDetailAPIView(DestroyModelMixin, UpdateModelMixin, generics.RetrieveUpdateDestroyAPIView):
 class StatusDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-  permission_classes      = []
-  authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
 
@@ -66,22 +62,16 @@ class StatusDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class StatusCreateAPIView(generics.CreateAPIView):
-  permission_classes      = []
-  authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
 
 
 
 class StatusUpdateAPIView(generics.UpdateAPIView):
-  permission_classes      = []
-  authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
 
 
 class StatusDeleteAPIView(generics.DestroyAPIView):
-  permission_classes      = []
-  authentication_classes  = []
   queryset                = Status.objects.all()
   serializer_class        = StatusSerialzer
